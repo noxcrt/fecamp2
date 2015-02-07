@@ -3,19 +3,106 @@
 <html lang="ko">
  
  <head>
-	<title> HTML5 1st Exmple </title>
+<!-- 메타 태그, 타이틀, 스타일 순으로 헤드에 작성하는 것을 권장합니다. -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width"> 
+<!-- 	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, user-scalable=no"> -->
+	<title> HTML5 1st Example -making html file </title>
+<!-- 타이틀의 경우, Depth를 거꾸로 입력하는 게 좋다. ex> '신문고 - 공지사항 - 청와대' is better than '청와대 - 공지사항 - 신문고' -->
+	<link rel="stylesheet" href="default.css">
+
+<!-- rel은 링크에 대한 관계를 물어보는 명령어 입니다. -->
+<!-- <link href="../css/default.css"> 상대적인 경로 작성법입니다.(다른 페이지에 있는 링크를 가지고 오려고 할 때 작성) -->
+    
+    <style>
+     p{background:silver;}
+/*임베디드 스타일 CSS작성입니다. 선택자(SELECTOR)라고 부릅니다.크롬에서 각각의 엘리먼트가 어디에서 작성되었는지 확인할 수 있습니다.임베디드 스타일 css는 헤드에만 작성할 수 있습니다. 바디에도 작성해서 적용될 수 있으나 특정 브라우저에서는 적용되지 않을 수 있으며, 문법오류이니 주의하여야 합니다.*//*
+css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 exteranl 스타일 css이 있습니다.*/
+/*   <엘리먼트 안에 css를 쓰는 방법을 인라인css라고 한다. 작성된 CSS 우선순위:인라인>임베디드>익스터널 css순이다.  background는 '속성', yellow는 '값'을 의미한다.>*/
+     </style>
  </head>
  
  <body>
-   <h1 title="참고제목"> 대제목 h1 type </h1>
-   <h2> 소제목 h2 type </h2>
-   <p> 내용입니다. </p>
-   <p title="World Wide Web Consortium">W3C</p>
+<!--   헤더, 풋터, 엘리먼트는 한페이지에 여러번 작성될 수 있다. -->
+ 
+  <div class="container">
+<!--    id는 사용자 정의. 숫자나 특수문자로 시작할 수 없다. _(underbar), -(하이푼)은 예외적으로 시작할 수 있다. id는 한페이지 안에서 한 번만 존재해야 한다. id값이 한페이지 안에 존재할 경우, 자바스크립트, css 오류가 생길 수 있다.-->
+	<a href="#main">메뉴 건너뛰기</a>
+    <header class="header">
+    	<h1>HTML5</h1>
+    	<nav class="gnb">
+    		<h2>메인 메뉴</h2>
+ <!-- sectioning tag=어사이드태그,아티클태글,섹션태그,네비게이션태그 / sectioning tag는 강려가게 이름을 <h1,2,3..>등 제목태그를 사용하기 권장함 -->
+    		<ul>
+<!-- ul은 unordered list, ol은 ordered list라는 의미함. li는 list item의 약자/ ul 태그와 li 태그는 항상 부모 자식 관계로 사용되어야 함/ ul태그와 li태그 사이에는 아무런 태그도 사용될 수 없음/ 다른 태그를 사용화면 화면이 깨져나올 수 있슴-->
+     		 <li>
+     		 	<a href="#">메뉴1</a>
+     		      <ul>
+     		 		<li><a href="#">메뉴1-1</a></li>
+     		 		<li><a href="#">메뉴1-2</a></li>
+     		 		<li><a href="#">메뉴1-3</a></li>
+     		 	  </ul>
+     		 </li>
+    		 <li>
+    		  <a href="#">메뉴2</a>
+			      <ul>
+     		 		<li><a href="#">메뉴2-1</a></li>
+     		 		<li><a href="#">메뉴2-2</a></li>
+     		 		<li><a href="#">메뉴2-3</a></li>
+     		      </ul>
+    		 </li>
+    		 
+    		 <li>
+    		  <a href="#">메뉴3</a>
+				  <ul>
+     		 		<li><a href="#">메뉴3-1</a></li>
+     		 		<li><a href="#">메뉴3-2</a></li>
+     		 		<li><a href="#">메뉴3-3</a></li>
+     		 	  </ul>
+    		 </li>	
+    		</ul>
+<!-- 인라인 엘리먼트(ex:a, span,...)는 블럭 엘리먼트(ex: h1, ul, li....)를 자식으로 둘 수 없다.(감쌀 수 없다.) 단, a엘리먼트는 (인라인엘리먼트이지만) 예외로 블럭엘리먼트를 감쌀 수 있다. -->
+    	</nav>
+    	<form class="search">
+    	 	<input type="search" required>
+<!--     	 required는 해당 폼을 꼭 작성해야 전송될 수 있도록 돕는다. required는 required=required의 단축형 -->
+			<input type="submit" value="검색">
+    	</form>
+<!--     	form에서 action 명령어를 적지 않으면 자기자신의 페이지로 submit한다. -->
+    </header>
+    <div class="body"> 
+    	<main id="main">
+    		#main
+    	</main>
+<!--     	자원의 주소 역할을 할 수 있도록 id를 메인으로 설정한 것 -->
+    	<nav class="lnb">
+    		<h2>메뉴1</h2>
+    		<ul>
+    			<li><a href="#">메뉴1-1</a></li>
+    			<li><a href="#">메뉴1-2</a></li>
+    			<li><a href="#">메뉴1-3</a></li>
+    		</ul>
+    	</nav>
+    	<aside class="aside">
+			<h2>바로가기</h2>
+    		<ul>
+    			<li><a href="#">참고링크1</a></li>
+    			<li><a href="#">참고링크2</a></li>
+    			<li><a href="#">참고링크3</a></li>
+    		</ul>
+    	</aside>
+<!--     	메인<main></main>은 웹페이지에 본문컨텐츠를 설명하는 영역으로 한페이지에 한번만 작성할 수 있다. 메인은 다른페이지에서 반복되지 않고 해당 페이지에서만 나타내는 유니크한 영역만 작성하는 것이 맞다. 네비게이션<nav></nav>은 주요한 링크만 작성한다. 어사이드<aside></aside>는 부수적인 링크들만 작성한다. -->
+
+<!-- 한 행을 다 차지하는 엘리먼트를 블락 엘리먼트, 그렇지 않은 엘리먼트를 인라인 엘리먼트라 불린다. ex> 위에 내용 중 메뉴건너뛰기는 인라인 엘리먼트, 헤더,메인,네비,어사이드등은 블락 엘리먼트이다. 인라인 엘리먼트도 'element sytle 혹은 인라인css에서 display: block으로 하면 블락엘리먼트가 된다. 그 반대로 블록 엘리먼트에 스타일을 display: inline을 쓰면 인라인 엘리먼트가 된다.' -->
+    
+    </div>
+    <footer class="footer">
+    	<p>Copyright &copy; FE.CAMP. All right reserved.</p>
+    </footer>
+  </div>
+<!--   부모자식 관계: 위에 내용으로 설명하면 div는 header와 footer의 '부모' , footer와 header는 div의 '자식'으로 표현된다. -->
+   
  </body>
 
- <footer>
- </footer>
-
+ 
 </html>
