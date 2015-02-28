@@ -306,16 +306,83 @@ main{
 
 /* Tablet & Desktop */
 
-@media (min-width: 768px){
-	
-}
-	/* 1.only all and 는 생략 가능하다. 생략하면 기본적으로 only all and로 간주된다.
+	/* 하단의 @media에 대한 설명
+	1.only all and 는 생략 가능하다. 생략하면 기본적으로 only all and로 간주된다.
  	2. 'all' 위치에는 screen, print 등의 용어도 사용가능하다. 프린트로 하면 프린트할 때만 표시되고,
  	스크린을 작성하면 PC,모바일등의 화면 출력에서 작성된다. 
  	and 는  and 좌우의 조건을 모두 충족할 때만 실행되는 개념이다. */
  	/* 타블렛, 모바일 등은 공인된 기준이 없어,
  	 크기를 어느수준을 타블렛/모바일로 설정하는 지 대해서는 임의로 설정해야 한다.*/
 
+@media (min-width: 768px){
+	.gnb>button{
+		display: none;
+	}
+	.search{
+		position: absolute;
+		top: 20px;
+		right: 10px;
+		margin: 0;
+		width: 200px;
+	}
+	.gnb{
+		margin-bottom: 15px;
+	}
+	.gnb>ul{
+		display: block !important ;
+		height: 40px;
+		border-bottom: 40px solid #fff;
+		padding: 0 0 0 25px;
+		overflow: visible;
+		background: -webkit-linear-gradient(#555 0%, #333 50%, #000 50%, #222 100%);
+		background: -moz-linear-gradient(#555 0%, #333 50%, #000 50%, #222 100%);
+		background: -ms-linear-gradient(#555 0%, #333 50%, #000 50%, #222 100%);
+		background: -o-linear-gradient(#555 0%, #333 50%, #000 50%, #222 100%);
+		background: linear-gradient(to bottom, #555 0%, #333 50%, #000 50%, #222 100%);
+	}
+	/* !important를 사용하면, 선택자의 가장 우선순위에 속하게 된다.*/
+	/* border-bottom을 준 이유는 해당 위치에 세부 매뉴 .gnb>ul>ul을 작성할 공간을 만들기 위해서임
+	그라디언트에서 %는 그라디언트의 시작 위치와 끝나는 위치이다.*/
+	.gnb ul ul{
+		display: none;
+	}
+	/*.gnb>ul>li>ul는 .gbn ul ul 혹은 .gnb li ul로 단축해서 쓸 수 있다.*/
+	.gnb>ul>li{
+		float: left;
+	}
+	/*float: left;를 쓰는 이유: 해당 부분을 display:inline-block으로 처리할 수 있으나
+	 자간 때문에 스타일링이 어려움*/
+	 .gnb a{
+	 	background: none !important;
+	 }
+	 .gnb>ul>li>a{
+	 	line-height: 40px;
+	 	padding: 0 25px;
+	 }
+	.gnb>ul>.active>a{
+	 	background: #fff !important;
+	 	color: #000;
+	 	font-weight: 700;
+	 	margin-top: 4px;
+	 	line-height: 36px;
+	 	border-radius: 4px 4px 0 0;
+	 }
+	 /* 부모요소에 플롯 속성이 있으면 부모자식간의 수직마진중첩현상은 발생하지 않는다.*/
+
+	.gnb>ul>li.active>ul{
+	  display: block;
+	}
+	.gnb ul ul{
+		position: absolute;
+	}
+ 	.gnb li li{
+ 		border: 0;
+ 		display: inline-block;
+ 	}
+ 	.gnb li li>a{
+ 		color: #666;
+ 		line-height: 40px;
+ 	}
 /* Tablet */
 @media (min-width:768px) and (max-width:1024px) {
 

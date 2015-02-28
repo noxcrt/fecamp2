@@ -1,7 +1,21 @@
 jQuery(function($){
-	$(".gnb>button").on("click", function(){
+	var $gnbBtn = $ (".gnb>button");
+	/* 	var=변수 설정, 성능 차이도 존재 */
+	
+	$gnbBtn.on("click", function(){
 		// $(".gnb>ul").slideToggle(200);는 하단의 명령어와 같다. this는 ".gnb>button을 의미한다."
 		$(this).next("ul").slideToggle(200);
+	
+			/*if ( $(".gnb>button").is(":hidden") ){*/
+			// 위의 if문 의미: gnb의 ul의 디스플레이가 닫혀(블럭 상태) 있으면,
+		
+		if ( $gnbBtn.text() === "메뉴 열기" ) {
+			/*메뉴 닫기 텍스트 표시*/
+			$gnbBtn.text("메뉴닫기");
+		} else {
+			/*메뉴열기 텍스트 표시*/
+			$gnbBtn.text("메뉴열기");
+		}
 	})
 });
 /* 1) jQuery(function($){
