@@ -27,10 +27,47 @@ input,
 textarea,
 select{
 	font-size: 14px;
+	font-family: sans-serif;
 }
-/* 폰트 사이즈가 적용되지 않는 엘리먼트까지 적용시키기 위해 위처럼 작성한다. */
-
+	/* 폰트 사이즈가 적용되지 않는 엘리먼트까지 적용시키기 위해 위처럼 작성한다. */
+	/*	나눔글꼴이 다운되지 않을 때, 내장되어 있는 글꼴/sans-serif(고딕계열)의 글씨를 렌더링 해서 보여준다.*/
+img,
+video{
+	max-width: 100%;
+	height: auto;
+	/*height: auto;로 주는 이유는 폭에 맞추어 높이가 비율에 맞도록 가변할 수 있게 만들기 위함*/
+	overflow:hidden;
+}
+	/* img, video는 인라인 엘리먼트이며 너비를 가지고 있다. 하지만 iframe은 너비와 높이에 대한 비율정보가 없다.
+	따라서 높이값이 우리가 원하는 데로 컨트롤되지 않는다. -> 위의 방법을 iframe을 위와 같이 사용할 수 없다.*/
+.vframe{
+	position: relative;
+	max-width: 100%;
+	height:0;
+	padding-top: 56.25%;
+}
+.vframe>iframe{
+	position: absolute;
+	top: 0;
+	width:100%;
+	height: 100%;
+}
 /* ALL */
+ @font-face {
+  font-family: NG;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot);
+  src: url(https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2) format('woff2'),
+       url(https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff) format('woff'),
+       url(https://fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.ttf) format('truetype');
+ }
+ /* cf) www.google.com/fonts/earlyaccess/
+ 위의 내용은 웹폰트에 대한 부분이다.
+ 해당 글꼴은 나눔 고딕이다.
+ 원래 w3c에서 권장하는 글씨체 파일은 woff이다. eot는 ie7,8등에서 사용하고자 있는 url이다.*/
+
   body{
   	background-image: -webkit-linear-gradient(#ccc,#fff);
   	background-image: -moz-linear-gradient(#ccc,#fff);
@@ -50,7 +87,10 @@ select{
  	/* font-weight는 normal, bold가 있다. 해당 내용은 400, 700으로 써도 표현된다.*/
  	/* text-shadow: x y blur color <-텍스트 쉐도우의 기본 속성 
  	텍스트 쉐도우는 값을 여러번 적용할 수 있다.*/
-
+ .gnb *{
+ 	box-sizing:content-box;
+ }
+  /* .gnb *는 부트스트랩css적용으로 인해 깨지는 부분들을 복구하기 위한 부분이다.*/
  .search{
  	letter-spacing: -4px;
  }
@@ -94,6 +134,7 @@ main{
 	box-shadow: 0 0 4px rgba(0,0,0,.3);
 	border-radius: 8px;
 	min-height: 300px;
+	overflow: hidden;
 }
 	/* 
 	 #main보다 main를 선택한 이유는? 선택자 우선 순위 때문. #main이 main보다 선택자 우선 순위가 높다. ->
@@ -106,6 +147,10 @@ main{
 	 1) 선언하지 않으면 default는 1(불투명)
 	 2) rgba는 css3 속성이라, 익스플로러 7/8/9에서는 인식을 못함
 	  따라서 rgba값위에 box-shawdow: 0 0 4px #999;와 같은 값을 써주어야 함*/
+
+main>article{
+	padding: 15px;
+}
 .lnb ul,
 .aside ul{
 	margin: 0;
@@ -165,10 +210,14 @@ main{
 .aside{
 	border: 1px solid #ddd;
 	border-radius: 4px;
+	background: #fff;
 	padding: 0 10px;
+	box-sizing:content-box;
+
 }
 /* 부모자식간에 수직마진이 중첩이 될 때, 부모 요소에 보더를 주거나 padding(-top)을 주면,
  수직마진 현상이 생기지 않는다.*/
+ /* box-sizing은 부트스트랩에 의해 박스가 border-box로 변경된 부분을 다시 복원하기 위함이다.*/
 .aside h2{
 	font-size: 14px;
 	margin: 0;
@@ -181,7 +230,6 @@ main{
 .aside a{
 	display: block;
 	line-height: 32px;
-	text-decoration: none;
 }
 	/* 폰트 사이즈 디폴트는 16px */
 .footer{
@@ -195,13 +243,52 @@ main{
 	Google에서 color contrast checker로 검색 -> WCAG 2 AA Compliant에서 YES가 나와야함
 	최근엔 지침이 완화되어 contrast ratio가 3이 나오면 됨*/
 
+.table-rwd{
+	overflow: auto;
+}
+	/*테이블: 모바일에서는 테이블의 내용이 넘칠 떄, 가로 스크롤바가 default로 보이지 않음*/
+.table{
+	border-collapse: collapse;
+	/* border-collapse: collapse;셀 보더들을 겹치게 해주는 기능 */
+}
+.table th,
+.table td{
+	border-bottom: 1px solid #ddd;
+	padding: 5px;
+	text-align: center;
+}
+.table thead th{
+	background: #eee;
+	border-top: 2px solid #bbb;
+}
+.table tbody>:last-child{
+	border-bottom: 2px solid #bbb;
+}
+.table td{
+	width: 14%;
+	vertical-align: top;
+	/* vertical-align은 인라인과 인라인 블록에만 적용할 수 있다.
+	td는 예외상황으로, 해당 부분에 vertical-align을 주면 텍스트에 vertical-align이 적용된다.*/
+}
+.sign-up{
+	margin-bottom: 15px;
+}
+.sign-up dt{
+	font-weight: 700;
+	font-size: 16px;
+}
+.sign-up input+label{
+	margin-right: 20px;
+}
+	/* 인접형제선택자: 'input+label" -> 인풋 다음에 레이블 요소가 나올 때 선택*/
+
 /* Mobile */
 	
 	/*모바일용 쿼리는 미디어 쿼리 설정 안하겠습니다. why? 오래된 모바일 브라우져는 css3를 지원하지 않아
 	미디어 쿼리를 읽을 수 없다. 따라서 미디어 쿼리를 작성하지 않으면 옛날 핸드폰을 구매한 사람들이 미디어 쿼리를
 	작성한 것보다 많은 사람들에게 해당 내용을 보여줄 수 있다. 이런 기법을 '모바일 퍼스트 css법'이라고 한다. */
  
- .container{
+ .ctnr{
  	margin: 0 10px;
  }
 
@@ -213,6 +300,8 @@ main{
 	position: absolute;
 	overflow: hidden;
 	margin: 0;
+	opacity:0;
+	/*opacity:0;으로 설정하면, 글자를 투명하게 설정하면서도 화면 낭독기가 해당 부분을 읽을 수 있다.*/
 }
 .gnb>button{
 	border:0;
@@ -226,6 +315,9 @@ main{
 	cursor: pointer;
 	top: 15px;
 	right: 10px;
+	box-sizing:border-box;
+	/* box-sizing은 부트스트랩에 의해 박스가 border-box로 변경된 부분을 default
+	(.gnb *{box-sizing:content-box;})해줬던 부분으로 인해 오류가 발생한 부분을 다시 복원하기 위함이다.*/
 }
 	/* 1) absolute 처리를 한 이유는 다른 하위 속성들이 1px씩 밀리지 않도록 하기 위해서
 	 height값은 0이 아닌 1px를 쓴 이유는 화면 낭독기가 읽지 못하는 경우가 발생하기 때문
@@ -243,7 +335,10 @@ main{
 	height: 4px;
 	border-top: 12px double #fff;
 	border-bottom: 12px double #fff;
+	box-sizing:content-box;
+	/* box-sizing은 부트스트랩에 의해 박스가 border-box로 변경된 부분을 다시 복원하기 위함이다.*/
 }
+
 	/* 1) :before를 누르면 첫번째 자식 요소를 선택하게 됨. 단 여기서는 css 상에서 넣어줌
 	content이하의 속성은  content:""를 꾸미는 속성들이다.
 	2) border-top과 margin에서의 double을 쓰면 border-top(=12px)를 삼등분한다. 이를 삼등분해사,
@@ -315,6 +410,14 @@ main{
  	 크기를 어느수준을 타블렛/모바일로 설정하는 지 대해서는 임의로 설정해야 한다.*/
 
 @media (min-width: 768px){
+	body,
+	table,
+	input,
+	textarea,
+	button{
+		font-family: NG, sans-serif;
+	}
+	
 	.gnb>button{
 		display: none;
 	}
@@ -327,7 +430,9 @@ main{
 	}
 	.gnb{
 		margin-bottom: 15px;
+		position: relative;
 	}
+	/* 포지션 relative를 주는 이유? 자식 요소인 ul이 .gnb를 기준으로 위치를 선정할 수 있도록 하기 위해서 */
 	.gnb>ul{
 		display: block !important ;
 		height: 40px;
@@ -352,6 +457,7 @@ main{
 	}
 	/*float: left;를 쓰는 이유: 해당 부분을 display:inline-block으로 처리할 수 있으나
 	 자간 때문에 스타일링이 어려움*/
+	 /* 포지션을 따로 설정하지 않으면 기본 값은 'static'이다. */
 	 .gnb a{
 	 	background: none !important;
 	 }
@@ -371,9 +477,17 @@ main{
 
 	.gnb>ul>li.active>ul{
 	  display: block;
+	  left: 20px;
 	}
+	/* .gnb(부모요소)에 relative속성을 주었기 때문에, .gnb를 기준으로 왼쪽 20 px 위치에서 해당 요소가 시작한다. */
+	
+    /*	.gnb ul li:nth-child(3)>ul{
+		left:100px;
+	}
+	 특정 선택자를 선택 하기 위해서 nth-child()을 사용 */
+	
 	.gnb ul ul{
-		position: absolute;
+      position: absolute;
 	}
  	.gnb li li{
  		border: 0;
@@ -383,12 +497,86 @@ main{
  		color: #666;
  		line-height: 40px;
  	}
+ 	.body:after{
+ 		content:"";
+ 		display: block;
+ 		clear: both;
+ 	}
+	/* .body:after는 바디클래스가 종료되기 직전에 가상의 자식 엘리먼트를 하나를 선택한다는 의미임
+	 before와 after 선택자는 항상 content라는 (인라인)속성과 함께함
+	 클리어 보스를 실행하면 메인, 네비게이션, 어사이드가 플롯이 되어 있더라도 바디가 0이 되지 않음
+	 (세 속성 중 가장 큰 값을 따름)
+	 하단의 타블랫, 데스크톱에서 칼럼때문에 .body:after{}이하의 요소를 작성 */
+ }
+
 /* Tablet */
 @media (min-width:768px) and (max-width:1024px) {
 
-}
+ 	/* 타블릿용의 해상도는 투컬럼으로 구성되는데, 
+ 	가변폭과 고정폭이 같이 사용하는 방식을 하이브리드 레이아웃이라고 한다.*/
+ 	.body{
+ 		padding-right: 200px;
+ 	}
+ 	main{
+ 		float:left;
+ 		width: 100%;
+ 		margin-right: -180px;
+ 		/* 부모엘리먼트(바디 엘리먼트)를 기준으로 %를 계산
+ 		바디 클래스에 패딩을 주면 패딩값만큼 공간이 비게 됨. 그 공간에 lnb와 aside를 밀어 넣을 계획*/
+ 	}
+ 	/*플롯값을 주고 위드 값을 따로 주지 않으면, 자식 요소의 너비를 따라감*/
+ 	.lnb,
+ 	.aside{
+ 		float: right;
+ 		width: 180px;
+ 		box-sizing:border-box;
+ 		position: relative;
+ 		left: 200px;
+ 		 /* aside영역에 보더와 마진을 위(all)에서 주었기 때문에 width를 180으로 주면 사이즈를 통일 시킬 수 없다.
+ 		해당 영역을 통일하려면 'box-sizing:border-box'를 주면 된다. css3속성이기 때문에 ie8 이하에서
+ 		지원하지 않는 문제가 있다. 
+ 		브라우져별 속성 사용 여부는 'caniuse.com에서 확인하면 된다. 확인 결과 사용해도 되기 때문에 사용!*/
+ 	}
+ }
 
 /* Desktop */
 @media (min-width: 1025px){
-
+	.body{
+		padding: 0 200px 0 220px;
+	}
+	main{
+		float: left;
+		/*float을 줘야 형제 노드(lnb,aside)에 영향을 줄 수 있기 때문에 작성해야 함*/
+		width: 100%;
+		margin-right: -100%;
+	}
+	.lnb,
+	.aside{
+		position: relative;
+	}
+	.lnb{
+		float: left;
+		width: 200px;
+		right: 220px;
+	}
+	.aside{
+		float: right;
+		width: 158px;
+		left: 200px;
+	}
+	.ctnr{
+		position: relative;
+		/* 이전에 '서치'에 포지션: 앱솔루트를 주었기 때문에 사용. 기존의 경우, body를 기준으로 위치를 잡기 때문에
+		콘테이너에 포지션 relative를 선언해야 함
+		바디의 경우, 별도의 마진 값이 없기 때문에 서치창이 */
+		max-width: 1280px;
+		margin: 0 auto;
+		/* auto: (좌,우 혹은 상, 하)마진 값을 자동으로 나누어 가짐*/
+		padding: 0 10px;
+	}
+	.search{
+		top: 0;
+		right: 10px;
+		/* .ctnr의 요소에 영향을 받음, .ctnr에 패딩을 준 만큼 오른쪽으로 이동시켜야 함*/
+	}
 }

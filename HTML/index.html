@@ -9,7 +9,10 @@
 <!-- 	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, user-scalable=no"> -->
 	<title> HTML5 1st Example -making html file </title>
 <!-- 타이틀의 경우, Depth를 거꾸로 입력하는 게 좋다. ex> '신문고 - 공지사항 - 청와대' is better than '청와대 - 공지사항 - 신문고' -->
-	<link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부트스트랩용 css -->
+
+    <link rel="stylesheet" href="default.css">
     <!--[if lt IE 9]>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script> 
@@ -33,7 +36,7 @@ css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 
  <body>
 <!--   헤더, 풋터, 엘리먼트는 한페이지에 여러번 작성될 수 있다. -->
  
-  <div class="container">
+  <div class="ctnr">
 <!--    id는 사용자 정의. 숫자나 특수문자로 시작할 수 없다. _(underbar), -(하이푼)은 예외적으로 시작할 수 있다. id는 한페이지 안에서 한 번만 존재해야 한다. id값이 한페이지 안에 존재할 경우, 자바스크립트, css 오류가 생길 수 있다.-->
 	<a href="#main" class="skip">메뉴 건너뛰기</a>
     <header class="header">
@@ -84,7 +87,157 @@ css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 
     </header>
     <div class="body"> 
     	<main id="main">
-    		#main
+    		<article>
+                <img hidden src="http://dummyimage.com/1024x100/000/fff" alt="이미지 테스트" width="1024" height="100">
+                <!-- 이미지를 작성할 때 width, height값을 써주는 게 좋다. why? 렌더링이 빨리 된다. -->
+
+                <!-- "Video For Everybody" http://camendesign.com/code/video_for_everybody -->
+                <!-- 비디오는 w3c로 규격화 되어 있지않아, mp4/webm/ogg 세가지 규격을 모두 준비해야 한다. -->
+                <video hidden controls="controls" poster="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg" width="640" height="360">
+                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4" />
+                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm" type="video/webm" />
+                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv" type="video/ogg" />
+                    <object type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="640" height="360">
+                        <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+                <!-- 브라우져 호환성을 확보하기 위해 오브젝트와 파람에 동일 swf 파일 url을 작성  -->
+                        <param name="allowFullScreen" value="true" />
+                        <param name="wmode" value="transparent" />
+                        <param name="flashVars" value="config={'playlist':['http%3A%2F%2Fsandbox.thewikies.com%2Fvfe-generator%2Fimages%2Fbig-buck-bunny_poster.jpg',{'url':'http%3A%2F%2Fclips.vorwaerts-gmbh.de%2Fbig_buck_bunny.mp4','autoPlay':false}]}" />
+                        <img alt="Big Buck Bunny" src="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg" width="640" height="360" title="No video playback capabilities, please download the video below" />
+                    </object>
+                </video>
+                <p hidden>
+                    <strong>Download video:</strong> <a href="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4">MP4 format</a> | <a href="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv">Ogg format</a> | <a href="http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm">WebM format</a>
+                </p>
+
+                <div hidden class="vframe">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/FdfxmiZFUhM" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div hidden class="table-rwd">
+                <!-- 표 폭이 넘칠 때 가로 스크롤 바를 생성하기 위해 div가 필요.
+                반응형 웹사이트에서 표를 표현할 때 필요하다. -->
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Table heading</th>
+                            <th>Table heading</th>
+                            <th>Table heading</th>
+                            <th>Table heading</th>
+                            <th>Table heading</th>
+                            <th>Table heading</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Table cell Table cell Table cell Table cell Table cell Table cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cellTable cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                            <td>Table cell</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                <h1 hidden> 나눔고딕 테스트</h1>
+                <p hidden> 동해물과 백두산이 마르고...</p>
+
+                <form class="sign-up">
+                    <fieldset>
+                      <legend>회원가입(필수!)</legend>
+                        <div class="form-group">
+                           <label for="email">이메일</label>
+                           <input  id="email" type="email" class="form-control" required
+                            placeholder="abc@abc.com">
+                            <!-- for="id" '이메일' 택스트를 누르면 이메일 입력란에 포커스가 된다.
+                            for와 id의 사용을 통해 시각장애자도 화면 낭독기를 통해 해당 기능을 알 수 있다. -->
+                            <!-- disabled=서버에 값 전송X, readonly=서버에 값은 전송
+                             / 둘은 사용자입장에서는 동일하게 값을 입력할 수 없다. -->
+                        </div>
+
+                        <div class="form-group">
+                           <label for="pw1">비밀번호</label>
+                           <input id="pw1" type="password" class="form-control" required
+                           placeholder="영문 대소문자와 숫자를 사용하여 6자리 이상 작성">
+                        </div>
+                        <div class="form-group">
+                         <label for="pw2">비밀번호 확인</label>
+                         <input id="pw2" type="password" class="form-control" required
+                         placeholder="영문 대소문자와 숫자를 사용하여 6자리 이상 작성">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend> 추가 입력 사항(옵션) </legend>
+                        <dl>
+                            <dt> 성별 </dt>
+                            <dd>
+                                <input type="radio" id="male" name="gender">
+                                <label for="male">남성</label>
+                                <input type="radio" id="female" name="gender">
+                                <label for="female">여성</label>
+                            </dd>
+                            <dt>취미</dt>
+                            <dd>
+                                <input type="checkbox" id="mtb">
+                                <label for="mtb">MTB</label>
+                                <input type="checkbox" id="football">
+                                <label for="football">football</label>
+                                <input type="checkbox" id="baseball">
+                                <label for="baseball">baseball</label>
+                            </dd>
+                        </dl>
+
+                        <!-- 라디오 버튼은 단일 선택(인풋에 동일한 '네임'값을 넣어야 한다.)만 가능하고, 다중선택이 필요할 때는 체크박스를 사용한다. -->
+                    </fieldset>
+                    <button type="submit"> 확인 </button>
+                </form>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                  모달 부트스트랩 자바스크립트
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </article>
     	</main>
 <!--     	자원의 주소 역할을 할 수 있도록 id를 '메인'으로 설정한 것. 시각장애인에게 독문으로 알려주기 위한 이유도 있음 -->
     	<nav class="lnb">
@@ -106,7 +259,6 @@ css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 
 <!--     	메인<main></main>은 웹페이지에 본문컨텐츠를 설명하는 영역으로 한페이지에 한번만 작성할 수 있다. 메인은 다른페이지에서 반복되지 않고 해당 페이지에서만 나타내는 유니크한 영역만 작성하는 것이 맞다. 네비게이션<nav></nav>은 주요한 링크만 작성한다. 어사이드<aside></aside>는 부수적인 링크들만 작성한다. -->
 
 <!-- 한 행을 다 차지하는 엘리먼트를 블락 엘리먼트, 그렇지 않은 엘리먼트를 인라인 엘리먼트라 불린다. ex> 위에 내용 중 메뉴건너뛰기는 인라인 엘리먼트, 헤더,메인,네비,어사이드등은 블락 엘리먼트이다. 인라인 엘리먼트도 'element sytle 혹은 인라인css에서 display: block으로 하면 블락엘리먼트가 된다. 그 반대로 블록 엘리먼트에 스타일을 display: inline을 쓰면 인라인 엘리먼트가 된다.' -->
-    
     </div>
     <footer class="footer">
     	<p>Copyright &copy; FE.CAMP. All right reserved.</p>
@@ -114,6 +266,8 @@ css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 
   </div>
 <!--   부모자식 관계: 위에 내용으로 설명하면 div는 header와 footer의 '부모' , footer와 header는 div의 '자식'으로 표현된다. -->
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"> </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jQuery- 부트스트랩 cdn  -->
 <script src="default.js"> </script>
     <!-- 스크립트 태그는 헤드와 바디에서만 사용할 수 있다. 
     1)헤드에 넣어야하는 경우: html 파싱 이전에 필요한 경우
@@ -121,6 +275,7 @@ css를 별도로 만들고, 적용하고자 하는 페이지에 적용시키는 
     보통은 바디 종료 직전에 넣는 것을 권장함
     3) jquery mdn에서 가지고 온 파일(스크립트 태그)가 dafault.js보다 먼저 입력되어 있어야 함
     -->
+
  </body>
 
  
